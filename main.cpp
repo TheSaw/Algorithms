@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 
-#include "sorting.h"
+#include "sort.h"
 #include "utils.h"
 #include "timer.h"
 
@@ -16,7 +16,7 @@ int main()
   t.stop("Resize took: ");
 
   t.start();
-  sorting::sort_quick(v, 0, v.size()-1);
+  sort::sort_quick(v, 0, v.size()-1);
   t.stop("radixsort: ");
 
   std::cout << utilities::vector_checksorted(v) ? "sorted! " : "not sorted!";

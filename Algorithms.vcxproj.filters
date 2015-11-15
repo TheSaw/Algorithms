@@ -26,7 +26,10 @@
     <ClInclude Include="timer.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="sorting.h">
+    <ClInclude Include="select.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sort.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

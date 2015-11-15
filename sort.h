@@ -1,5 +1,5 @@
-#ifndef ALGORITHMS_SORTING_H_
-#define ALGORITHMS_SORTING_H_
+#ifndef ALGORITHMS_SORT_H_
+#define ALGORITHMS_SORT_H_
 
 #include <chrono>
 #include <cmath>
@@ -9,7 +9,7 @@
 
 #include "utils.h"
 
-namespace sorting {
+namespace sort {
 
 template <typename T>
 void sort_insertion(std::vector<T> &v) {
@@ -102,23 +102,36 @@ void sort_heap(std::vector<T> &v) {
 }
 
 template <typename T>
-int _partition(std::vector<T> &v, int p, int r) {
+int _rand_partition(std::vector<T> &v, int p, int r) {
     int i = p - 1;
     std::swap(v[r], v[utilities::random(p, r)]);
-    for (int j = p; j < r; j++) {
+    for (int j = p; j < r; ++j) {
         if (v[j] < v[r]) {
             std::swap(v[++i], v[j]);
         }
     }
 
-    std::swap(v[i + 1], v[r]);
-    return i + 1;
+    std::swap(v[++i], v[r]);
+    return i;
+}
+
+template <typename T>
+int _partition(std::vector<T> &v, int p, int r) {
+    int i = p - 1;    
+    for (int j = p; j < r; ++j) {
+        if (v[j] < v[r]) {
+            std::swap(v[++i], v[j]);
+        }
+    }
+
+    std::swap(v[++i], v[r]);
+    return i;
 }
 
 template <typename T>
 void sort_quick(std::vector<T> &v, int p, int r) {
     if (p < r) {
-        int q = _partition(v, p, r);
+        int q = _rand_partition(v, p, r);
         sort_quick(v, p, q - 1);
         sort_quick(v, q + 1, r);
     }
@@ -127,7 +140,7 @@ void sort_quick(std::vector<T> &v, int p, int r) {
 template <typename T>
 void _limitedquick(std::vector<T> &v, int p, int r, int k) {
     if (r - p > k) {
-        int q = partition(v, p, r);
+        int q = rand_partition(v, p, r);
         _limitedquick(v, p, q - 1, k);
         _limitedquick(v, q + 1, r, k);
     }
@@ -165,4 +178,4 @@ void sort_radix(std::vector<T> &v) {
 
 } // namespace sorting
 
-#endif ALGORITHMS_SORTING_H_
+#endif ALGORITHMS_SORT_H_

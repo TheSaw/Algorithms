@@ -124,7 +124,8 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sorting.h" />
+    <ClInclude Include="select.h" />
+    <ClInclude Include="sort.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
