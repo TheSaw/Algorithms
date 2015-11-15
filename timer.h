@@ -1,4 +1,6 @@
-#pragma once
+#ifndef ALGORITHMS_TIMER_H_
+#define ALGORITHMS_TIMER_H_
+
 #include <chrono>
 #include <iostream>
 #include <string>
@@ -30,3 +32,5 @@ void Timer::stop(const std::string &text)
 	}
 	
 }
+
+#endif ALGORITHMS_TIMER_H_
