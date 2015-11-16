@@ -2,22 +2,29 @@
 #include <vector>
 #include <string>
 
+#include "select.h"
 #include "sort.h"
 #include "utils.h"
 #include "timer.h"
+#include "list.h"
 
 int main()
 {
 	Timer t;
   
-  t.start();
   std::vector<int> v;
-	utilities::vector_fillRandom(v, 0, 99999999, 50000);
-  t.stop("Resize took: ");
+	utilities::vector_fillRandom(v, 0, 9999, 5);
 
   t.start();
-  sort::sort_quick(v, 0, v.size()-1);
-  t.stop("radixsort: ");
+  list<int> l;
+  for (int i = 0; i < 1000000; ++i) {
+      l.push_back(i);
+  }
+  
+  t.stop("added elements \n");
 
-  std::cout << utilities::vector_checksorted(v) ? "sorted! " : "not sorted!";
+  l.clear();
+  std::cout << l.size() << std::endl;
+
+  int i = l.search('b');
 }

@@ -1,7 +1,29 @@
 #ifndef ALGORITHMS_SELECT_H_
 #define ALGORITHMS_SELECT_H_
 
+#include <vector>
+
+#include "sort.h"
+
 namespace select {
+
+template <typename T>
+T select_quick(std::vector<T> &v, int p, int r, int i) {
+    if (p == r) {
+        return v[p];
+    }
+
+    int q = sort::_rand_partition(v, p, r);
+
+    if (i == q) {
+        return v[q];
+    }
+    else if (i < q) {
+        return select_quick(v, p, q - 1, i);
+    }
+    else
+        return select_quick(v, q + 1, r, i);
+}
 
 template <typename T>
 int search_binary(const std::vector<T> &v, T key, int left, int right) {
@@ -34,6 +56,8 @@ int search_linear(const std::vector<T> &v, T key) {
     return -1;
 }
 
-}
+
+
+} // namespace select
 
 #endif ALGORITHMS_SELECT_H_

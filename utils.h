@@ -16,11 +16,14 @@ int getDigit(int n, int k) {
 }
 
 int random(int min, int max) {
-  std::random_device rd;
-  std::mt19937 mt(rd());
-	std::uniform_real_distribution<double> dist(min, max);
+    if (min > max) {
+        return 0;
+    }
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_real_distribution<double> dist(min, max);
 
-	return dist(mt);
+    return dist(mt);
 }
 
 template <typename T>
