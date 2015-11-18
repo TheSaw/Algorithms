@@ -41,14 +41,14 @@ private:
 };
 
 template <class T>
-list<T>::list<T>()
+list<T>::list()
     :count(0), head(NULL), tail(NULL)
 {
 
 }
 
 template <class T>
-list<T>::~list<T>() {
+list<T>::~list() {
     clear();
 }
 
@@ -85,6 +85,9 @@ T list<T>::pop_front() {
         --count;
         return data;
     }
+	else {
+		return -1;
+	}
 }
 
 template <class T> 

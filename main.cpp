@@ -7,24 +7,20 @@
 #include "utils.h"
 #include "timer.h"
 #include "list.h"
+#include "hashtable.h"
 
 int main()
 {
 	Timer t;
+
+	hashtable<std::string> H;
+	H.put("magyari", "Attila");
+    H.remove("magyari");
+    H.put("magyari", "Attilai");
+    H.put("magya", "Attilari");
+    H.put("magya", "Attilaari");
+
+    std::string s = H.get("magya");
+    H.remove("magyari");
   
-  std::vector<int> v;
-	utilities::vector_fillRandom(v, 0, 9999, 5);
-
-  t.start();
-  list<int> l;
-  for (int i = 0; i < 1000000; ++i) {
-      l.push_back(i);
-  }
-  
-  t.stop("added elements \n");
-
-  l.clear();
-  std::cout << l.size() << std::endl;
-
-  int i = l.search('b');
 }
