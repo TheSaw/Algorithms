@@ -12,9 +12,18 @@
 
 int main()
 {
-	Timer t;
+    Timer t;
 
+    std::vector<int> v = { 10, 11, 7, 3, 9, 6, 12, 5, 4 };
+
+    
     binaryTree<int> tree;
-    node<int> *n = tree.search(6);
+
+    for (auto i : v) {
+        tree.insert(i);
+    }
+
+    std::cout << tree.minimum()->data << std::endl;
+
   
 }
