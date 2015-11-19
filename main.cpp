@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 
+#include "BinaryTree.h"
 #include "select.h"
 #include "sort.h"
 #include "utils.h"
@@ -13,14 +14,7 @@ int main()
 {
 	Timer t;
 
-	hashtable<std::string> H;
-	H.put("magyari", "Attila");
-    H.remove("magyari");
-    H.put("magyari", "Attilai");
-    H.put("magya", "Attilari");
-    H.put("magya", "Attilaari");
-
-    std::string s = H.get("magya");
-    H.remove("magyari");
+    binaryTree<int> tree;
+    node<int> *n = tree.search(6);
   
 }

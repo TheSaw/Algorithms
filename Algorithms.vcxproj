@@ -124,6 +124,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="hashtable.h" />
     <ClInclude Include="list.h" />
     <ClInclude Include="select.h" />
