@@ -19,6 +19,8 @@ public:
     void insert(T key);
     void remove(T key);
     node<T> * minimum();
+    node<T> * next(node<T> * leaf);
+    node<T> * prev(node<T> * leaf);
 
 private:
     node<T> * root;
@@ -110,6 +112,7 @@ template <class T>
 void binaryTree<T>::remove(T key) {
     node<T> *del = search(key);
     if (del != NULL) {
+        // no children
         if (del->left == NULL && del->right == NULL) {
             if (del->parent->key >= del->key) {
                 del->parent->left = NULL;
@@ -118,6 +121,7 @@ void binaryTree<T>::remove(T key) {
                 del->parent->right = NULL;
             }
         }
+        // one child
         else if (del->left == NULL && del->right != NULL) {
             del->parent->right = del->right;
             del->right->parent = del->parent;
@@ -126,6 +130,7 @@ void binaryTree<T>::remove(T key) {
             del->parent->left = del->left;
             del->left->parent = del->parent;
         }
+        // two children
         else {
             node temp = r_minimum(del->right);
             del->data = temp->data;
@@ -158,6 +163,30 @@ node<T> * binaryTree<T>::r_minimum(node<T> * leaf) {
     else {
         return r_minimum(leaf->left);
     }
+}
+
+template <class T>
+node<T> * binaryTree<T>::next(node<T> * leaf) {
+    if (leaf == NULL) {
+        return NULL;
+    }
+    if (leaf->right != NULL) {
+        return minimum(leaf->right);
+    }
+    else {
+
+        while (leaf->parent->left != leaf) {
+            leaf = 
+        }
+        else {
+
+        }
+    }
+}
+
+template <class T>
+node<T> * binaryTree<T>::prev(node<T> * leaf) {
+
 }
 
 #endif ALGORITHMS_BINARYTREE_H_
