@@ -3,6 +3,7 @@
 #include <string>
 
 #include "BinaryTree.h"
+#include "dynamicP.h"
 #include "select.h"
 #include "sort.h"
 #include "utils.h"
@@ -14,16 +15,12 @@ int main()
 {
     Timer t;
 
-    std::vector<int> v = { 10, 11, 7, 3, 9, 6, 12, 5, 4 };
+    t.start();
+    std::cout << fib_DP_bottomup(1492);
+    t.stop("\nFibonacci ended: ");
 
-    
-    binaryTree<int> tree;
-
-    for (auto i : v) {
-        tree.insert(i);
-    }
-
-    std::cout << tree.minimum()->data << std::endl;
-
+    t.start();
+    std::cout << fib_DP_memo(1492);
+    t.stop("\nFibonacci ended: ");
   
 }

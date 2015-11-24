@@ -15,12 +15,17 @@ class binaryTree {
 public:
     binaryTree<T>();
 
+    node<T> * getRoot() { return root; }
     node<T> * search(T key);
     void insert(T key);
-    void remove(T key);
+    void remove(T del);
+    void remove(node<T> leaf);
     node<T> * minimum();
     node<T> * next(node<T> * leaf);
     node<T> * prev(node<T> * leaf);
+    void traversePreOrder(node<T> * leaf, void (cb)(node<T> *leaf));
+    void traverseInOrder(node<T> * leaf, void (cb)(node<T> *leaf));
+    void traversePostOrder(node<T> * leaf, void (cb)(node<T> *leaf));
 
 private:
     node<T> * root;
@@ -109,40 +114,43 @@ void binaryTree<T>::r_insert(T key, node<T> *leaf) {
 }
 
 template <class T>
+void binaryTree<T>::remove(node<T> del) {
+    // no children
+    if (del->left == NULL && del->right == NULL) {
+        if (del->parent->key >= del->key) {
+            del->parent->left = NULL;
+        }
+        else {
+            del->parent->right = NULL;
+        }
+    }
+    // one child
+    else if (del->left == NULL && del->right != NULL) {
+        del->parent->right = del->right;
+        del->right->parent = del->parent;
+    }
+    else if (del->left != NULL && del->right == NULL) {
+        del->parent->left = del->left;
+        del->left->parent = del->parent;
+    }
+    // two children
+    else {
+        node temp = next(del);
+        if (temp != NULL) {
+            del->data = temp->data;
+            remove(temp);
+        }
+    }
+
+    delete del;
+}
+
+template <class T>
 void binaryTree<T>::remove(T key) {
     node<T> *del = search(key);
     if (del != NULL) {
-        // no children
-        if (del->left == NULL && del->right == NULL) {
-            if (del->parent->key >= del->key) {
-                del->parent->left = NULL;
-            }
-            else {
-                del->parent->right = NULL;
-            }
-        }
-        // one child
-        else if (del->left == NULL && del->right != NULL) {
-            del->parent->right = del->right;
-            del->right->parent = del->parent;
-        }
-        else if (del->left != NULL && del->right == NULL) {
-            del->parent->left = del->left;
-            del->left->parent = del->parent;
-        }
-        // two children
-        else {
-            node temp = r_minimum(del->right);
-            del->data = temp->data;
-            temp->parent
-        }
-
-        delete del;
-    }
-    else
-    {
-        return NULL;
-    }
+        return remove(del);
+    }        
 }
 
 template <class T>
@@ -171,22 +179,49 @@ node<T> * binaryTree<T>::next(node<T> * leaf) {
         return NULL;
     }
     if (leaf->right != NULL) {
-        return minimum(leaf->right);
+        return r_minimum(leaf->right);
     }
     else {
-
-        while (leaf->parent->left != leaf) {
-            leaf = 
+        while (leaf->parent != NULL && leaf->parent->left != leaf) {
+            leaf = leaf->parent;
         }
-        else {
-
-        }
+        return leaf->parent;
     }
 }
 
 template <class T>
 node<T> * binaryTree<T>::prev(node<T> * leaf) {
+    // todo
+}
 
+template <class T>
+void binaryTree<T>::traversePreOrder(node<T> * leaf, void (cb)(node<T> *leaf)) {
+    if (leaf == NULL) {
+        return;
+    }
+    cb(leaf);
+    traverseInOrder(leaf->left, cb);
+    traverseInOrder(leaf->right, cb);
+}
+
+template <class T>
+void binaryTree<T>::traverseInOrder(node<T> * leaf, void (cb)(node<T> *leaf)) {
+    if (leaf == NULL) {
+        return;
+    }
+    traverseInOrder(leaf->left, cb);
+    cb(leaf);
+    traverseInOrder(leaf->right, cb);
+}
+
+template <class T>
+void binaryTree<T>::traversePostOrder(node<T> * leaf, void (cb)(node<T> *leaf)) {
+    if (leaf == NULL) {
+        return;
+    }
+    traverseInOrder(leaf->left, cb);    
+    traverseInOrder(leaf->right, cb);
+    cb(leaf);
 }
 
 #endif ALGORITHMS_BINARYTREE_H_
