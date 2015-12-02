@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <unordered_map>
 
 #include "BinaryTree.h"
 #include "dynamicP.h"
@@ -15,12 +16,11 @@ int main()
 {
     Timer t;
 
-    t.start();
-    std::cout << fib_DP_bottomup(1492);
-    t.stop("\nFibonacci ended: ");
+    std::vector<int> v;
+    utilities::vector_fillRandom(v, 1, 100, 1000);
 
-    t.start();
-    std::cout << fib_DP_memo(1492);
-    t.stop("\nFibonacci ended: ");
+    int best = bestCut(v, v.size());
+    std::cout << best;
   
+    system("PAUSE");
 }

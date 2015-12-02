@@ -2,6 +2,7 @@
 #define ALGORITHMS_DYNAMICP_H_
 
 #include <unordered_map>
+#include <algorithm>
 
 long long fib_recursive(int n)
 {
@@ -72,5 +73,51 @@ long long fib_DP_bottomup(int n)
     return -1;
 }
 
+int bestCut(const std::vector<int> &prices, int n)
+{
+    int max = -1;
+    static std::unordered_map<int, int> best;    
+
+    if (n == 0)
+    {
+        return 0;
+    }
+    else
+    {        
+        auto got = best.find(n);
+        if (got != best.end())
+        {
+            return got->second;
+        }
+
+        for (int i = 0; i < n; ++i)
+        {
+            max = std::max(max, prices[i] + bestCut(prices, n - i - 1));
+        }
+    }
+    
+    best.insert(std::make_pair(n, max));
+    return max;
+}
+
+int bestCut_bottomup(const std::vector<int> &prices, int n)
+{
+    int max = INT_MIN;
+    std::vector<int> best;
+    best.resize(n);
+    best[0] = 0;
+
+    for (int i = 0; i < n; ++i)
+    {
+        best[i] = prices[n - i] + best[i];
+    }
+    // todo
+}
+
+template <typename T>
+int LargestIncreasingSubsequence(const std::vector<T> &v, int n = -1)
+{
+
+}
 
 #endif ALGORITHMS_DYNAMICP_H_
