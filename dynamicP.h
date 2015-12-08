@@ -112,6 +112,8 @@ int bestCut_bottomup(const std::vector<int> &prices, int n)
         best[i] = prices[n - i] + best[i];
     }
     // todo
+
+    return -1;
 }
 
 template <typename T>

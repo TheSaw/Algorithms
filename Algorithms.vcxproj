@@ -127,6 +127,8 @@
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="dynamicP.h" />
     <ClInclude Include="hashtable.h" />
+    <ClInclude Include="HuffmanNode.h" />
+    <ClInclude Include="Huffman.h" />
     <ClInclude Include="list.h" />
     <ClInclude Include="select.h" />
     <ClInclude Include="sort.h" />

@@ -11,16 +11,15 @@
 #include "timer.h"
 #include "list.h"
 #include "hashtable.h"
+#include "Huffman.h"
 
 int main()
 {
     Timer t;
 
-    std::vector<int> v;
-    utilities::vector_fillRandom(v, 1, 100, 1000);
-
-    int best = bestCut(v, v.size());
-    std::cout << best;
+    Huffman huff;
+    std::string out;
+    huff.encode("test", out);
   
     system("PAUSE");
 }
