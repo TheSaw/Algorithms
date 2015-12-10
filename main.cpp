@@ -19,7 +19,15 @@ int main()
 
     Huffman huff;
     std::string out;
-    huff.encode("test", out);
+
+    std::vector<char> v;
+    utilities::vector_fillRandom(v, 65, 90, 1000000);
+    std::string in(v.begin(), v.end());
+
+    huff.encode(in, out);
+    
+    std::cout << out.size();
+    std::cout << "   --  " << out.size() / 8 << " bytes" << std::endl;
   
-    system("PAUSE");
+    //system("PAUSE");
 }
