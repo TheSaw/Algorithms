@@ -11,6 +11,7 @@
 #include "timer.h"
 #include "list.h"
 #include "hashtable.h"
+#include "Huffman.h"
 
 int main()
 {
@@ -21,6 +22,4 @@ int main()
 
     maxValueSequence(v);
 
-
-    
 }

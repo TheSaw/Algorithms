@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\HuffmanCode">
+      <UniqueIdentifier>{f091303c-d148-451a-b906-0b06560e481e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -43,6 +46,12 @@
     </ClInclude>
     <ClInclude Include="dynamicP.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HuffmanNode.h">
+      <Filter>Source Files\HuffmanCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Huffman.h">
+      <Filter>Source Files\HuffmanCode</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

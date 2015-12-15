@@ -114,6 +114,8 @@ int bestCut_bottomup(const std::vector<int> &prices, int n)
 
     return -1;
     // todo
+
+    return -1;
 }
 
 template <typename T>
