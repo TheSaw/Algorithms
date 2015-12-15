@@ -111,13 +111,45 @@ int bestCut_bottomup(const std::vector<int> &prices, int n)
     {
         best[i] = prices[n - i] + best[i];
     }
+
+    return -1;
     // todo
 }
 
 template <typename T>
-int LargestIncreasingSubsequence(const std::vector<T> &v, int n = -1)
+int LongestIncreasingSubsequence(const std::vector<T> &v)
 {
+    std::vector<int> a;
+    a.resize(v.size(), 1);    
+    int max = -1;
 
+    for (int i = 1; i < v.size(); ++i)
+    {
+        for (int j = 0; j < i; ++j)
+        {
+            if (v[j] < v[i])
+            {
+                a[i] = std::max(a[i], a[j] + 1);
+                max = std::max(max, a[i]);
+            }
+        }
+    }
+
+    return max;
+}
+
+template <typename T>
+std::pair<int, int> maxValueSequence(const std::vector<T> &v)
+{
+    for (int i = 1; i < v.size(); ++i)
+    {
+        for (int j = 0; j < i; ++j)
+        {
+            std::cout << "Sum of " << j << " --> " << i << std::endl;
+        }
+    }
+
+    return std::pair<int, int>(1, 2);
 }
 
 #endif ALGORITHMS_DYNAMICP_H_

@@ -17,10 +17,10 @@ int main()
     Timer t;
 
     std::vector<int> v;
-    utilities::vector_fillRandom(v, 1, 100, 1000);
+    utilities::vector_fillRandom(v, -100, 100, 10);
 
-    int best = bestCut(v, v.size());
-    std::cout << best;
-  
-    system("PAUSE");
+    maxValueSequence(v);
+
+
+    
 }
