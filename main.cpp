@@ -5,6 +5,7 @@
 
 #include "BinaryTree.h"
 #include "dynamicP.h"
+#include "graph.h"
 #include "select.h"
 #include "sort.h"
 #include "utils.h"
@@ -17,9 +18,29 @@ int main()
 {
     Timer t;
 
-    std::vector<int> v;
-    utilities::vector_fillRandom(v, -100, 100, 10);
+    std::vector<std::list<int>> adj_list = { {}, {2,7,8}, {1,3,6}, {2,4,5}, {3}, {3}, {2}, {1}, {1,9,12}, {8,10,11}, {9}, {9}, {8} };
 
-    maxValueSequence(v);
+    graph G;
+    G.initMatrix(12);
+    G.addEdge(0, 1, 2);
+    G.addEdge(0, 6, 5);
+    G.addEdge(0, 7, 6);
+    G.addEdge(1, 2, 1);
+    G.addEdge(1, 5, 3);
+    G.addEdge(2, 3, 1);
+    G.addEdge(2, 4, 7);
+    G.addEdge(4, 9, 1);
+    G.addEdge(5, 8, 2);
+    G.addEdge(7, 8, 3);
+    G.addEdge(7, 11, 4);
+    G.addEdge(8, 9, 4);
+    G.addEdge(8, 10, 5);
 
+    auto edges = G.Prim();
+    for (auto edge : edges)
+    {
+        std::cout << edge.from << " -- " << edge.to << std::endl;
+    }
+
+//    system("PAUSE");
 }

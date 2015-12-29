@@ -121,11 +121,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="graph.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="dynamicP.h" />
+    <ClInclude Include="graph.h" />
     <ClInclude Include="hashtable.h" />
     <ClInclude Include="HuffmanNode.h" />
     <ClInclude Include="Huffman.h" />

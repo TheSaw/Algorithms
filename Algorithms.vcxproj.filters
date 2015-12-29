@@ -21,6 +21,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="graph.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="utils.h">
@@ -52,6 +55,9 @@
     </ClInclude>
     <ClInclude Include="Huffman.h">
       <Filter>Source Files\HuffmanCode</Filter>
+    </ClInclude>
+    <ClInclude Include="graph.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
