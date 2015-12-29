@@ -32,7 +32,6 @@ std::list<std::pair<int, int>> graph::Kruskal()
 std::list<edge> graph::Prim()
 {
     const int start_node = 0;
-    int cnt_edge = 0;
     std::list<edge> MST;
     std::vector<bool> visited(adj_matrix.size(), false);
     std::priority_queue<std::pair<int, edge>, std::vector<std::pair<int, edge>>, compareEdge> Q;
@@ -48,7 +47,6 @@ std::list<edge> graph::Prim()
         {
             visited[cheapest.second.to] = true;
             MST.push_back(cheapest.second);
-            ++cnt_edge;
 
             for (int i = 0; i < adj_matrix[cheapest.second.to].size(); ++i)
             {
