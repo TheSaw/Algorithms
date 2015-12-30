@@ -20,6 +20,14 @@ struct compareEdge
     }
 };
 
+struct comparePair
+{
+    bool operator()(std::pair<int, int> left, std::pair<int, int> right)
+    {
+        return left.first > right.first;
+    }
+};
+
 class graph
 {
 public:

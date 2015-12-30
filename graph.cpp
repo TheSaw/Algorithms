@@ -194,42 +194,35 @@ std::list<int> graph::BFS(int origin)
 
 int graph::Dijkstra(int from, int to)
 {
-    if (!adj_list.empty())
-    {
-        toMatrix(adj_list);
-    }
+    const int size = adj_matrix.size();
+    std::vector<bool> visited(size, false);
+    std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, comparePair> Q;
+    std::vector<int> dist(size, INT_MAX);
 
-    // minimum distance from source to each other node
-    std::vector<int> dist(adj_matrix.size(), INT_MAX);
+    Q.push({ 0, from });
     dist[from] = 0;
 
-    // vertices which are not yet finished processing
-    std::set<std::pair<int, int>> vertices;
-    vertices.insert({ from, 0 });
-
-    while (!vertices.empty())
+    while (!Q.empty())
     {
-        int current = vertices.begin()->first;
-        if (current == to)
-        {
-            return vertices.begin()->second;
-        }
+        std::pair<int, int> cheapest = Q.top();
+        Q.pop();
 
-        vertices.erase(vertices.begin());
-
-        for (int i = 0; i < adj_matrix[current].size(); ++i)
+        if (!visited[cheapest.second])
         {
-            int edge = adj_matrix[current][i];
-            if (edge != INT_MAX && dist[current] + edge < dist[edge])
+            for (int i = 0; i < size; ++i)
             {
-                vertices.erase({ i, dist[edge] });
-                dist[edge] = dist[current] + edge;
-                vertices.insert({ i, dist[edge] });
+                if (adj_matrix[cheapest.second][i] != INT_MAX)
+                {
+                    dist[i] = std::min(dist[i], dist[cheapest.second] + adj_matrix[cheapest.second][i]);
+                    Q.push({ dist[i], i });
+                }
             }
-        }
+
+            visited[cheapest.second] = true;
+        }        
     }
 
-    return INT_MAX;
+    return dist[to];
 }
 
 int graph::BellmanFord(int from, int to)
