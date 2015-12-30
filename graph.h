@@ -29,8 +29,9 @@ public:
     void setGraph(const std::vector<std::vector<int>> &graph);
     void toMatrix(const std::vector<std::list<int>> &adj_list);
     void toList(const std::vector<std::vector<int>> &adj_matrix);
-    void addEdge(int A, int B, int cost);
+    void addEdge(int A, int B, int cost, bool bidirectional = true);
     int Dijkstra(int from, int to);
+    int BellmanFord(int from, int to);
     std::list<std::pair<int, int>> Kruskal();
     std::list<edge> Prim();
     void initMatrix(int nrNodes);
@@ -38,8 +39,8 @@ public:
     graph();
 
 private:
-    void getEdges(std::set<std::pair<int, std::pair<int, int>>>& edges);
-
+    std::list<edge> getEdges();
+    
     std::vector<std::list<int>> adj_list;
     std::vector<std::vector<int>> adj_matrix;
 };

@@ -29,18 +29,14 @@ int main()
     G.addEdge(1, 5, 3);
     G.addEdge(2, 3, 1);
     G.addEdge(2, 4, 7);
-    G.addEdge(4, 9, 1);
+    //G.addEdge(4, 9, 1);
     G.addEdge(5, 8, 2);
     G.addEdge(7, 8, 3);
     G.addEdge(7, 11, 4);
     G.addEdge(8, 9, 4);
     G.addEdge(8, 10, 5);
 
-    auto edges = G.Prim();
-    for (auto edge : edges)
-    {
-        std::cout << edge.from << " -- " << edge.to << std::endl;
-    }
+    std::cout << "Distance:\t" << G.BellmanFord(0, 10) << std::endl;
 
 //    system("PAUSE");
 }

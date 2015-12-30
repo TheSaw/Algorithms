@@ -7,7 +7,6 @@
 std::list<std::pair<int, int>> graph::Kruskal()
 {
     std::set < std::pair<int, std::pair<int, int>>> edges;
-    getEdges(edges);
 
     std::list<std::set<int>> forest;
 
@@ -36,7 +35,7 @@ std::list<edge> graph::Prim()
     std::vector<bool> visited(adj_matrix.size(), false);
     std::priority_queue<std::pair<int, edge>, std::vector<std::pair<int, edge>>, compareEdge> Q;
 
-    Q.push({ 0, edge(0, 0) });
+    Q.push({ start_node, edge(0, 0) });
 
     while (!Q.empty())
     {
@@ -76,22 +75,25 @@ graph::graph()
 {
 }
 
-void graph::getEdges(std::set<std::pair<int, std::pair<int, int>>>& edges)
+std::list<edge> graph::getEdges()
 {
-    if (!adj_list.empty())
+    std::list<edge> edges;
+
+    for (int i = 0; i < adj_matrix.size(); ++i)
     {
-        for (int i = 0; i < adj_list.size(); ++i)
+        for (int j = 0; j < adj_matrix[i].size(); ++j)
         {
-            for (auto connection : adj_list[i])
+            if (adj_matrix[i][j] != INT_MAX)
             {
-                edges.insert({ adj_matrix[i][connection],
-                    std::make_pair(std::min(i, connection), std::max(i, connection)) });
+                edges.push_back(edge(i, j));
             }
         }
     }
+
+    return edges;
 }
 
-void graph::addEdge(int A, int B, int cost)
+void graph::addEdge(int A, int B, int cost, bool bidirectional)
 {
     if (!adj_list.empty())
     {
@@ -102,7 +104,10 @@ void graph::addEdge(int A, int B, int cost)
     if (!adj_matrix.empty())
     {
         adj_matrix[A][B] = cost;
-        adj_matrix[B][A] = cost;
+        if (bidirectional)
+        {
+            adj_matrix[B][A] = cost;
+        }        
     }
 }
 
@@ -225,4 +230,28 @@ int graph::Dijkstra(int from, int to)
     }
 
     return INT_MAX;
+}
+
+int graph::BellmanFord(int from, int to)
+{
+    std::vector<int> dist(adj_matrix.size(), INT_MAX);
+    std::vector<int> prev(adj_matrix.size(), -1);
+
+    dist[from] = 0;
+
+    for (int iter = 0; iter < adj_matrix.size() - 1; ++iter)
+    {
+        for (int i = 0; i < adj_matrix.size(); ++i)
+        {
+            for (int j = 0; j < adj_matrix[i].size(); ++j)
+            {
+                if (adj_matrix[i][j] != INT_MAX)
+                {
+                    dist[j] = std::min(adj_matrix[i][j] + dist[i], dist[j]);
+                }                
+            }
+        }
+    }
+
+    return dist[to];
 }
